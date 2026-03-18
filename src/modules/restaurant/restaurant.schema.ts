@@ -29,6 +29,13 @@ export interface IOpeningDay {
 
 export type IOpeningHours = Record<Day, IOpeningDay>;
 
+/* ---------------- RATING ---------------- */
+
+export interface IRating {
+  average: number;
+  count: number;
+}
+
 /* ---------------- RESTAURANT ---------------- */
 
 export interface IRestaurant extends Document {
@@ -50,6 +57,7 @@ export interface IRestaurant extends Document {
   isApproved: boolean;
 
   ownerId: Types.ObjectId;
+  rating: IRating;
 
   createdAt: Date;
   updatedAt: Date;
@@ -157,6 +165,19 @@ const restaurantSchema = new Schema<IRestaurant>(
       required: true
     },
 
+    rating: {
+      average: {
+        type: Number,
+        default: 0,
+        min: 0,
+        max: 5
+      },
+      count: {
+        type: Number,
+        default: 0
+      }
+    },
+    
     minOrderAmount: {
       type: Number,
       default: 0

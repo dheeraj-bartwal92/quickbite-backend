@@ -99,7 +99,7 @@ const userSchema = new Schema<IUser>({
     enum: Object.values(UserType),
     default: UserType.CUSTOMER,
    },
-
+   
    tokenVersion: {
       type: Number,
       default: 0,
